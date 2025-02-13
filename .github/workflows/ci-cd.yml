@@ -48,11 +48,16 @@ jobs:
         run: |
           docker build --build-arg VERSION=${{ env.VERSION }} -t my-app:${{ env.VERSION }} .
 
-      - name: Save docker image as artefact
+      - name: Save Docker image as artifact
+        run: |
+          docker save -o my-app-${{ env.VERSION }}.tar my-app:${{ env.VERSION }}
+
+      - name: Upload Docker image
         uses: actions/upload-artifact@v4
         with:
           name: my-app-docker-${{ env.VERSION }}
           path: my-app-${{ env.VERSION }}.tar
+
       
       # Push Docker image to Docker Hub
       # - name: Log in to Docker Hub
