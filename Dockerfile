@@ -14,6 +14,8 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY --from=build /app/target/my-app-${{ env.VERSION }}.jar /app/my-app.jar
+ARG VERSION
+COPY --from=build /app/target/my-app-${VERSION}.jar /app/my-app.jar
+
 
 ENTRYPOINT ["java", "-jar", "/app/my-app.jar"]

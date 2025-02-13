@@ -42,7 +42,8 @@ jobs:
         
         - name: Build Docker image
           run: |
-            docker build -t my-app:${{ env.VERSION }} . 
+            docker build --build-arg VERSION=${{ env.VERSION }} -t my-app:${{ env.VERSION }} .
+ 
         
         - name: Create GitHub Release
           uses: softprops/action-gh-release@v1
