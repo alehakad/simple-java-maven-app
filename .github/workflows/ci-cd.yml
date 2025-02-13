@@ -38,7 +38,7 @@ jobs:
         - name: Build JAR
           run: |
             mvn clean package
-            mv target/my-app.jar target/my-app-${{ env.VERSION }}.jar
+            mv target/my-app-1.0.0.jar target/my-app-${{ env.VERSION }}.jar
         - name: Upload JAR artifact
           uses: actions/upload-artifact@v4
           with:
