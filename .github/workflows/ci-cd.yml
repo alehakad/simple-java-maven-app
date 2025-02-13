@@ -39,12 +39,11 @@ jobs:
           run: |
             mvn clean package
             mv target/my-app-1.0.0.jar target/my-app-${{ env.VERSION }}.jar
-        - name: Upload JAR artifact
-          uses: actions/upload-artifact@v4
-          with:
-            name: my-app-${{ env.VERSION }}
-            path: target/my-app-${{ env.VERSION }}.jar
-          
+        
+        - name: Build Docker image
+          run: |
+            docker build -t my-app:${{ env.VERSION }} . 
+        
         - name: Create GitHub Release
           uses: softprops/action-gh-release@v1
           with:
