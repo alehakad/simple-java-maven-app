@@ -8,7 +8,6 @@ COPY src ./src
 
 # install dependencies
 RUN mvn clean package -DskipTests
-RUN echo "Using version: $VERSION"
 
 # Debug: List the contents of /app/target
 RUN ls -l /app/target
